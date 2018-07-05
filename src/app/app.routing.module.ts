@@ -1,6 +1,6 @@
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { NgModule } from '@angular/core';
-
+import { AppCustomPreloader } from './tools/load.strategies/AppCustomPreloader';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full',redirectTo: '/home'  },
@@ -10,7 +10,7 @@ const routes: Routes = [
 //export const App.routingRoutes = RouterModule.forChild(routes);
 
 @NgModule({
-  imports:[RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
+  imports:[RouterModule.forRoot(routes, {preloadingStrategy: AppCustomPreloader})],
   exports:[RouterModule]
 })
 
