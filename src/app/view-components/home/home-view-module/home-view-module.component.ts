@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home-view-module',
+  moduleId: module.id,
   templateUrl: './home-view-module.component.html',
   styleUrls: ['./home-view-module.component.css']
 })
