@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
   declarations: [
