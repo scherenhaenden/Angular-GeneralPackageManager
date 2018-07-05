@@ -1,5 +1,6 @@
+import { EnsureModuleLoadedOnceGuard } from './tools/guards/EnsureModuleLoadedOnceGuard';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
@@ -13,4 +14,8 @@ import { AppComponent } from './app.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule extends EnsureModuleLoadedOnceGuard {
+  constructor( @Optional() @SkipSelf() parentModule: AppModule)  {
+    super(parentModule);
+  }
+ }
