@@ -2,3 +2,7 @@
     border: 1px solid gray;
     outline: 1px solid gray;
 }
+
+.no-padding{
+    padding: 0px;
+}
