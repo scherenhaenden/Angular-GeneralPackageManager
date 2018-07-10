@@ -1,15 +1,16 @@
 <br>
-<div class="container form-group searcher-panel-border">
-    <div class="row col-18">
-        <div class="form-group col-11 no-padding">
+<div class="container form-group searcher-panel-border ">
+    <div class="row col-18 no-border no-margin-down">
+        <div class="col-11 no-padding">
             <div class="icon-addon addon-lg">
                 <input type="text" placeholder="Name of Package" class="form-control col-12" id="searcher">
                 <label for="searcher" class="glyphicon glyphicon-search" rel="tooltip" title="Name of Package"></label>
             </div>
         </div>
         <form>
-            <div class="form-group col-14 no-padding">
-                <select class="form-control" id="sel1">
+            <div class="col-12 no-padding">
+                <select class="form-control " id="sel1">
+                <option>-</option>
                 <option>nuget</option>
                 </select>
                 <br>
@@ -17,7 +18,7 @@
         </form>
     </div>
     <div class="row col-14">
-        <div class="form-group col-12 no-padding">                       
+        <div class="form-group col-12 no-padding no-margin-down">                       
             <div id="input" #packagesDiv contenteditable></div>
           </div>
     </div>
