@@ -1,0 +1,47 @@
+.searcher-panel-border {
+    border: 1px solid gray;
+    outline: 1px solid gray;
+}
+
+.no-padding{
+    padding: 0px;
+}
+
+.no-border{
+    border: 0px;
+}
+
+.no-margin{
+     margin: 0px !important;
+}
+
+.no-margin-down{
+    margin-bottom: 0px !important;
+}
+
+.margin-down-minus{
+    margin-bottom: -15px !important;
+}
+
+.delete-form-size-difference{
+    margin: 0px;
+}
+
+
+#input {
+    /*margin-top: 0px;*/
+    width: auto;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    background-color: white;
+    background-color: -moz-field;
+    border: 1px solid darkgray;
+    box-shadow: 1px 1px 1px 0 lightgray inset;  
+    font: -moz-field;
+    font: -webkit-small-control;
+    margin-top: 0px;
+    padding: 0;
+    min-height: 300px;
+
+}
+  
