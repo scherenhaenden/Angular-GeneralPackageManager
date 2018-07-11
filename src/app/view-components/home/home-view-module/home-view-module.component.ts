@@ -1,4 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@angular/core';
+import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
+
+
 
 @Component({
   moduleId: module.id,
@@ -8,6 +11,8 @@ import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@ang
 export class HomeViewModuleComponent implements OnInit, AfterContentInit {
  
   @ViewChild('packagesDiv') packagesDiv: ElementRef;
+
+  public mockingLoadPackaged = new MockingLoadPackaged();
 
   constructor() { }
 
@@ -26,6 +31,8 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   }
 
   public searchPackage(): void {
+
+    let result = this.mockingLoadPackaged.getSimpleListOfPackages();
     
     
   }
