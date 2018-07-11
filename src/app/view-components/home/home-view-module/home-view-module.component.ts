@@ -25,4 +25,8 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
 
   }
 
+  public buttonClicked(): void {
+    
+  }
+
 }

@@ -19,6 +19,10 @@
     margin-bottom: 0px !important;
 }
 
+.margin-down-minus{
+    margin-bottom: -15px !important;
+}
+
 .delete-form-size-difference{
     margin: 0px;
 }
