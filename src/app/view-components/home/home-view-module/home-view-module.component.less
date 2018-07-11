@@ -8,6 +8,14 @@
 .searcher-panel-border {    
     border:@size-general-border-outlines @general-lines-borders-and-outlines-color-solid;
     outline: @size-general-border-outlines @general-lines-borders-and-outlines-color-solid;
+    max-height: 900px;
+    overflow-y: hidden;
+    
+}
+.panel-packages-result{
+    max-height: 900px;
+    overflow-y: scroll;
+
 }
 
 .no-padding{
@@ -62,4 +70,10 @@
     
 
 }
-  
+ .package {
+    width: auto;
+    height: 100px;
+    border: 1px solid darkgray;
+    outline: @size-general-border-outlines @general-lines-borders-and-outlines-color-solid;
+    background: chartreuse;
+ }
