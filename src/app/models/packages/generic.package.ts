@@ -1,5 +1,5 @@
 export class GenericPackage {
-    Name:string;
-    Version:string;
-    Info:string;
+    public Name:string;
+    public Version:string;
+    public Info:string;
 }
