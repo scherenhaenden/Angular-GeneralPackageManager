@@ -6,6 +6,7 @@ import { PackagesViewsComponent } from './packages-views.component';
   imports: [
     CommonModule
   ],
+  exports:[PackagesViewsComponent],  
   declarations: [PackagesViewsComponent]
 })
 export class PackagesViewsModule { }
