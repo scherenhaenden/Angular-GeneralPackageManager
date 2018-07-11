@@ -10,13 +10,35 @@
     outline: @size-general-border-outlines @general-lines-borders-and-outlines-color-solid;
     max-height: 900px;
     overflow-y: hidden;
+    width:1200px;
     
 }
 .panel-packages-result{
+    /*width:600px;
+    max-height: 900px;
+    overflow-y: scroll;*/
+
+}
+
+
+
+.panel-packages-result-pool-results{
+    width:800px !important;
     max-height: 900px;
     overflow-y: scroll;
 
 }
+
+.packages-results-summary{
+    
+    visibility: visible;
+    display: flex;
+}
+
+.panel-summary{
+    width:400px  !important;   
+}
+
 
 .no-padding{
     padding: 0px;
@@ -77,3 +99,6 @@
     outline: @size-general-border-outlines @general-lines-borders-and-outlines-color-solid;
     background: chartreuse;
  }
+ select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 4px);
+}
