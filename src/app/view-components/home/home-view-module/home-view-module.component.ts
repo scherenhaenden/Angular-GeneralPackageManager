@@ -3,7 +3,7 @@ import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@ang
 @Component({
   moduleId: module.id,
   templateUrl: './home-view-module.component.html',
-  styleUrls: ['./home-view-module.component.css']
+  styleUrls: ['./home-view-module.component.css', './home-view-module.component.less']
 })
 export class HomeViewModuleComponent implements OnInit, AfterContentInit {
  
