@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NugetService } from './tools/services/nuget/nuget.service';
 
 
 
@@ -28,7 +29,7 @@ import { RouterTestingModule } from '@angular/router/testing';
     RouterTestingModule
     
   ],
-  providers: [],
+  providers: [NugetService],
   bootstrap: [AppComponent]
 })
 export class AppModule extends EnsureModuleLoadedOnceGuard {

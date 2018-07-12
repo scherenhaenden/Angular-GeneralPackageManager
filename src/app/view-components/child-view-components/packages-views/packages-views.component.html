@@ -2,8 +2,8 @@
     <ng-container *ngFor="let item of genericPackages; let i = index">
         <div id="number" class="package">        
             <div class="container-package-name-version">
-              <div  class="container-package-name">name: package {{item.Name}}</div>
-              <div class="container-package-version">version: package {{item.Version}}</div>
+              <div  class="container-package-name">name: {{item.Name}}</div>
+              <div class="container-package-version">version: {{item.Version}}</div>
             </div>  
             <div class="container-package-info wrap">    
               <span>Info: {{item.Info}}</span>
