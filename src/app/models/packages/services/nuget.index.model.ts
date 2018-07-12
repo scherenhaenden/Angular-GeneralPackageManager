@@ -37,5 +37,5 @@ declare module NugetIndexModel {
         data: Datum[];
     }
 
-}export = NugetIndexModel;
+}export default NugetIndexModel;
 
