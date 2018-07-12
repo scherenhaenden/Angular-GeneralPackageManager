@@ -4,7 +4,9 @@
     <div class="row col-18 no-border search-row-size  ">
         <div class="col-10 search-row-size no-padding">
             <div class="icon-addon addon-lg no-padding search-row-size">
-                <input type="search" placeholder="Name of Package" class="form-control col-12 search-row-size" id="searcher">
+                <input type="search" placeholder="Name of Package"                
+                 name="searchInput" [(ngModel)]="searchInput"
+                class="form-control col-12 search-row-size" id="searcher">
                 <label for="searcher" class="glyphicon glyphicon-search" rel="tooltip" title="Name of Package"></label>
             </div>
         </div>
