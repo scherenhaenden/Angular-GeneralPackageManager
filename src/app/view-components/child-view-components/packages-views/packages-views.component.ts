@@ -15,4 +15,12 @@ export class PackagesViewsComponent implements OnInit {
   ngOnInit() {    
   }
 
+  public test(): void {
+
+    
+    
+    
+  }
+
+
 }
