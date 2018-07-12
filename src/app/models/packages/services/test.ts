@@ -3,7 +3,7 @@ import INugetIndexModel = require('./nuget.index.model');
 
 
 export class SwapManager  {
-    emitter = new INugetIndexModel.Context();
+    emitter = new INugetIndexModel.default.Context();
 
     public searchPackage(): void {
 
