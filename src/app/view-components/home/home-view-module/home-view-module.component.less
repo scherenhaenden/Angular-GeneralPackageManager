@@ -1,0 +1,104 @@
+
+/* 1080 */
+@general-lines-borders-and-outlines-color-solid:solid darkgray;
+@size-general-border-outlines:1px;
+@search-row-size:40px;
+
+
+.searcher-panel-border {    
+    border:@size-general-border-outlines @general-lines-borders-and-outlines-color-solid;
+    outline: @size-general-border-outlines @general-lines-borders-and-outlines-color-solid;
+    max-height: 900px;
+    overflow-y: hidden;
+    width:1200px;
+    
+}
+.panel-packages-result{
+    /*width:600px;
+    max-height: 900px;
+    overflow-y: scroll;*/
+
+}
+
+
+
+.panel-packages-result-pool-results{
+    width:800px !important;
+    max-height: 900px;
+    overflow-y: scroll;
+
+}
+
+.packages-results-summary{
+    
+    visibility: visible;
+    display: flex;
+}
+
+.panel-summary{
+    width:400px  !important;   
+}
+
+
+.no-padding{
+    padding: 0px;
+}
+
+.no-border{
+    border: 0px;
+}
+
+.no-margin{
+     margin: 0px !important;
+}
+
+.no-margin-down{
+    margin-bottom: 0px !important;
+}
+
+.margin-down-minus{
+    margin-bottom: -15px !important;
+}
+
+.delete-form-size-difference{
+    margin: 0px;
+}
+
+.search-row-size{
+    height: @search-row-size;
+
+}
+
+.button-search{
+    border:@size-general-border-outlines @general-lines-borders-and-outlines-color-solid;
+    height:@search-row-size;    
+    outline: 0px;
+}
+
+#input {
+    /*margin-top: 0px;*/
+    width: auto;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    background-color: white;
+    background-color: -moz-field;
+    border: 1px solid darkgray;
+    box-shadow: 1px 1px 1px 0 lightgray inset;  
+    font: -moz-field;
+    font: -webkit-small-control;
+    margin-top: 0px;
+    padding: 0;
+    min-height: 300px;
+    
+
+}
+ .package {
+    width: auto;
+    height: 100px;
+    border: 1px solid darkgray;
+    outline: @size-general-border-outlines @general-lines-borders-and-outlines-color-solid;
+    background: chartreuse;
+ }
+ select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 4px);
+}
