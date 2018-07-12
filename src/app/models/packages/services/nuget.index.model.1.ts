@@ -1,10 +1,10 @@
-export interface Weather {
+/*export interface Weather {
     @context: @context;
     totalHits: number;
     lastReopen: string;
     index: string;
     data?: (DataEntity)[] | null;
-  }
+  }*/
  /* export interface @context {
     @vocab: string;
     @base: string;
