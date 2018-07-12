@@ -17,4 +17,7 @@ export class PackagesViewsComponent implements OnInit {
   public onSelect(selectedItem: GenericPackage) {
     this.selected.emit(selectedItem);
   }
+  
+  public test(): void {
+  }
 }
