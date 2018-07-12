@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@angular/core';
 import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
+import { GenericPackage } from '../../../models/packages/generic.package';
 
 
 
@@ -13,6 +14,7 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   @ViewChild('packagesDiv') packagesDiv: ElementRef;
 
   public mockingLoadPackaged = new MockingLoadPackaged();
+  public genericPackages: Array<GenericPackage> = [];
 
   constructor() { }
 
@@ -32,8 +34,8 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
 
   public searchPackage(): void {
 
-    let result = this.mockingLoadPackaged.getSimpleListOfPackages();
-    console.log(result);
+    this.genericPackages= this.mockingLoadPackaged.getSimpleListOfPackages();
+    console.log(this.genericPackages);
     
     
   }
