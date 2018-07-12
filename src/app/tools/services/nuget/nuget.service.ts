@@ -18,22 +18,12 @@ export class NugetService {
 
     ) { }
 
-    public getIndexService(): any{
-
-        //alert('e')
-
+    public getIndexService(): any{      
         return this.http.get(this.nugetRoutes.IndexURL);
-
-
     }
 
     public findPackageStartingWith(): any{
-
-        //alert('e')
-
         return this.http.get(this.nugetRoutes.IndexURL);
-
-
     }
 
 
