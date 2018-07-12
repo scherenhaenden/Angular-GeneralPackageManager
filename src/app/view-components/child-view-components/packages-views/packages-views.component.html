@@ -1,13 +1,13 @@
-<ng-template [ngIf]="genericPackages.length>0">  
-    <ng-container *ngFor="let item of genericPackages; let i = index">
-        <div id="number" class="package">        
-            <div class="container-package-name-version">
-              <div  class="container-package-name">name: package {{item.Name}}</div>
-              <div class="container-package-version">version: package {{item.Version}}</div>
-            </div>  
-            <div class="container-package-info wrap">    
-              <span>Info: {{item.Info}}</span>
-            </div>      
-          </div> 
-    </ng-container>     
+<ng-template [ngIf]="genericPackages.length>0">
+	<ng-container *ngFor="let item of genericPackages; let i = index">
+		<div id="number" class="package" (click)="onSelect(item)">
+			<div class="container-package-name-version">
+				<div class="container-package-name">name: package {{item.Name}}</div>
+				<div class="container-package-version">version: package {{item.Version}}</div>
+			</div>
+			<div class="container-package-info wrap">
+				<span>Info: {{item.Info}}</span>
+			</div>
+		</div>
+	</ng-container>
 </ng-template>

@@ -1,40 +1,35 @@
-
-
 <div class="container form-group searcher-panel-border  ">
-    <div class="row col-18 no-border search-row-size  ">
-        <div class="col-10 search-row-size no-padding">
-            <div class="icon-addon addon-lg no-padding search-row-size">
-                <input type="search" placeholder="Name of Package" class="form-control col-12 search-row-size" id="searcher">
-                <label for="searcher" class="glyphicon glyphicon-search" rel="tooltip" title="Name of Package"></label>
-            </div>
-        </div>
-        <form class="search-row-size">
-            <div class="col-12 no-padding search-row-size">
-                <select class="form-control search-row-size" id="sel1">
-                <option>-</option>
-                <option>nuget</option>
-                </select>
-                <br>
-            </div>
-        </form>
-        <button 
-        class="col-1 form-control btn btn-default search-row-size button-search"
-            (click)="searchPackage()"> 
-            Search           
-         </button>
-    </div>
-    <div class="row col-14 panel-packages-result">
-        <div class="form-group col-12 no-padding no-margin-down packages-results-summary">                       
-            <div id="input" class="panel-packages-result-pool-results" #packagesDiv>
-                    <app-packages-views [(genericPackages)]="genericPackages"></app-packages-views>                
-            </div>
-            <div id="description" class="panel-summary"> 
-                sdfsfds
+	<div class="row col-18 no-border search-row-size  ">
+		<div class="col-10 search-row-size no-padding">
+			<div class="icon-addon addon-lg no-padding search-row-size">
+				<input type="text" [(ngModel)]="pkgsSearch" (keyup.enter)="searchPackage(pkgsSearch)" placeholder="Name of Package" class="form-control col-12 search-row-size"
+				 id="searcher">
+				<label for="searcher" class="glyphicon glyphicon-search" rel="tooltip" title="Name of Package"></label>
+			</div>
+		</div>
+		<form class="search-row-size">
+			<div class="col-12 no-padding search-row-size">
+				<select class="form-control search-row-size" id="sel1">
+					<option>-</option>
+					<option>nuget</option>
+				</select>
+				<br>
+			</div>
+		</form>
+		<button class="col-1 form-control btn btn-default search-row-size button-search" (click)="searchPackage(pkgsSearch)">
+			Search
+		</button>
+	</div>
+	<div class="row col-14 panel-packages-result">
+		<div class="form-group col-12 no-padding no-margin-down packages-results-summary">
+			<div id="input" class="panel-packages-result-pool-results" #packagesDiv>
+				<app-packages-views [(genericPackages)]="genericPackages" (selected)="onSelect($event)"></app-packages-views>
+			</div>
+			<div id="description" class="panel-summary">
+				<p>Info: {{currentPkg ? currentPkg.Info : ''}}</p>
 
-            </div>
-          </div>
-    </div>
+				<p>{{currentPkg ? currentPkg.Version : 'Version:'}}</p>
+			</div>
+		</div>
+	</div>
 </div>
-
-
-

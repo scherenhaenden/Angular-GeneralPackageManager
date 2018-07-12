@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { GenericPackage } from '../../../models/packages/generic.package';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {GenericPackage} from '../../../models/packages/generic.package';
 
 @Component({
   selector: 'app-packages-views',
@@ -7,12 +7,14 @@ import { GenericPackage } from '../../../models/packages/generic.package';
   styleUrls: ['./packages-views.component.less']
 })
 export class PackagesViewsComponent implements OnInit {
+  @Input() public genericPackages: Array<GenericPackage> = [];
+  @Output() selected = new EventEmitter<GenericPackage>();
 
-  @Input()  public genericPackages: Array<GenericPackage> = [];
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {    
+  public onSelect(selectedItem: GenericPackage) {
+    this.selected.emit(selectedItem);
   }
-
 }
