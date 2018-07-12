@@ -33,6 +33,7 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   public searchPackage(): void {
 
     let result = this.mockingLoadPackaged.getSimpleListOfPackages();
+    console.log(result);
     
     
   }
