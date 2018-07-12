@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@angular/core';
 import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
 import { GenericPackage } from '../../../models/packages/generic.package';
+import { NugetService } from '../../../tools/services/nuget/nuget.service';
 
 
 
@@ -16,9 +17,12 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   public mockingLoadPackaged = new MockingLoadPackaged();
   public genericPackages: Array<GenericPackage> = [];
 
-  constructor() { }
+  public sm:any;
 
-  ngOnInit() {    
+  constructor(private nugetService: NugetService) { }
+
+  ngOnInit() {  
+     
   }
 
   ngAfterContentInit(): void {        
@@ -34,8 +38,23 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
 
     this.genericPackages= this.mockingLoadPackaged.getSimpleListOfPackages();
     console.log(this.genericPackages);
+    console.log(this.sm);
+    this.showConfig(); 
     
     
   }
+
+  private showConfig() {
+    this.nugetService.getIndexService()
+      .subscribe((data: any) => this.sm = {
+          
+          
+          
+          data
+      }.data);
+
+  }
+
+
 
 }
