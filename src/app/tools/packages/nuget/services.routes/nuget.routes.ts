@@ -12,6 +12,4 @@ export class NugetRoutes {
         this.SearchAutocompleteService = 'https://api-v2v3search-0.nuget.org/autocomplete';
 
     }
-
-
 }
