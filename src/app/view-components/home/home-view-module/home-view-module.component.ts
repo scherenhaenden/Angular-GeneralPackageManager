@@ -1,9 +1,9 @@
+import { Datum } from './../../../models/packages/services/datum';
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@angular/core';
 import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
 import { GenericPackage } from '../../../models/packages/generic.package';
 import { NugetService } from '../../../tools/services/nuget/nuget.service';
-
-
+import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/SearchAutoCompleteResponse.model';
 
 @Component({
   moduleId: module.id,
@@ -16,13 +16,12 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
 
   public mockingLoadPackaged = new MockingLoadPackaged();
   public genericPackages: Array<GenericPackage> = [];
-
-  public sm:any;
+  public searchInput: string;
+  public searchAutoCompleteResponseModel:SearchAutoCompleteResponseModel;
 
   constructor(private nugetService: NugetService) { }
 
-  ngOnInit() {  
-     
+  ngOnInit() {       
   }
 
   ngAfterContentInit(): void {        
@@ -34,27 +33,34 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
 
   }
 
-  public searchPackage(): void {
+  public searchPackage(): void {  
+      
 
-    this.genericPackages= this.mockingLoadPackaged.getSimpleListOfPackages();
-    console.log(this.genericPackages);
-    console.log(this.sm);
-    this.showConfig(); 
-    
-    
+      try {
+        this.getPackateStartingNameBy(); 
+      }
+      catch(error) {
+        console.error(error);
+        // expected output: SyntaxError: unterminated string literal
+        // Note - error messages will vary depending on browser
+      }
   }
 
-  private showConfig() {
-    this.nugetService.getIndexService()
-      .subscribe((data: any) => this.sm = {
-          
-          
-          
-          data
-      }.data);
-
+  private getPackateStartingNameBy() {
+    this.nugetService.findPackageStartingWith(this.searchInput)
+    .subscribe(data => {      
+      this.searchAutoCompleteResponseModel= <SearchAutoCompleteResponseModel>data;      
+      this.parseObects();
+    });
   }
 
-
-
+  private parseObects(){
+    this.genericPackages = new Array<GenericPackage> ();
+    let genericPackage = new GenericPackage() ;
+    for (let entry of this.searchAutoCompleteResponseModel.data) {
+      genericPackage = new GenericPackage() ;
+      genericPackage.Name = entry;
+      this.genericPackages.push(genericPackage);
+    }
+  }
 }
