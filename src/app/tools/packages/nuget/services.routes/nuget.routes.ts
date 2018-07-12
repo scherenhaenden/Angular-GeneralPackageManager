@@ -3,6 +3,7 @@ export class NugetRoutes {
     public SearchAutocompleteService: string;
 
     constructor(){
+        this.fillRoutes();
         
     }
 
