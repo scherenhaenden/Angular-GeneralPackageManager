@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { GenericPackage } from '../../../models/packages/generic.package';
 
 @Component({
   selector: 'app-packages-views',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./packages-views.component.less']
 })
 export class PackagesViewsComponent implements OnInit {
+
+  @Input()  public genericPackages: Array<GenericPackage> = [];
 
   constructor() { }
 
