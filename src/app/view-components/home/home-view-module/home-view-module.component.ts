@@ -18,12 +18,10 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {    
   }
 
-  ngAfterContentInit(): void {
-    console.log(this.packagesDiv.nativeElement.innerHTML);
-    //this.deleteContentFromResultsViewer();
+  ngAfterContentInit(): void {        
   }
 
   //Delete Initial Content of Div (this one might be temporal).

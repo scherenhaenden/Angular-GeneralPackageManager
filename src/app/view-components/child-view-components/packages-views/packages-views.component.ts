@@ -12,7 +12,7 @@ export class PackagesViewsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {    
   }
 
 }
