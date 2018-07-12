@@ -27,5 +27,14 @@ export class NugetService {
 
     }
 
+    public findPackageStartingWith(): any{
+
+        //alert('e')
+
+        return this.http.get(this.nugetRoutes.IndexURL);
+
+
+    }
+
 
 }
