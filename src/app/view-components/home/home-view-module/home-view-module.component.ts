@@ -18,19 +18,11 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   public genericPackages: Array<GenericPackage> = [];
   public searchInput: string;
   public searchAutoCompleteResponseModel:SearchAutoCompleteResponseModel;
-
   public currentPkg: GenericPackage;
 
   constructor(private nugetService: NugetService) { }
 
   ngOnInit() {}
-
- 
-
-  
-
- 
-
 
   ngAfterContentInit(): void {}
 
@@ -54,14 +46,10 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
             .indexOf(pkgsSearch) >= 0
       );
     }
-    this.genericPackages = packages;
-
-    console.log(this.genericPackages);
+    this.genericPackages = packages;   
   }
 
-  public searchPackage(): void {  
-      
-
+  public searchPackage(): void {
       try {
         this.getPackateStartingNameBy(); 
       }
