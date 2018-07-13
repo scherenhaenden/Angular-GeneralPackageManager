@@ -1,9 +1,11 @@
-import { Datum } from './../../../models/packages/services/datum';
+import { Datum } from '../../../models/packages/services/datum';
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@angular/core';
 import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
 import { GenericPackage } from '../../../models/packages/generic.package';
 import { NugetService } from '../../../tools/services/nuget/nuget.service';
 import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/SearchAutoCompleteResponse.model';
+import { PackageService } from '../../../tools/services/generic/package.service';
+
 
 
 @Component({
@@ -20,7 +22,9 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   public searchAutoCompleteResponseModel:SearchAutoCompleteResponseModel;
   public currentPkg: GenericPackage;
 
-  constructor(private nugetService: NugetService) { }
+  constructor(private nugetService: NugetService
+              ,private packageService: PackageService
+               ) { }
 
   ngOnInit() {}
 
@@ -33,20 +37,6 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
 
   public onSelect(pkg: GenericPackage) {
     this.currentPkg = pkg;
-  }
-
-
- public searchPackageOsmany(pkgsSearch: string): void {
-    var packages = this.mockingLoadPackaged.getSimpleListOfPackages();
-    if (pkgsSearch && pkgsSearch.length > 0) {
-      packages = packages.filter(
-        pkg =>
-          Object.values(pkg)
-            .join()
-            .indexOf(pkgsSearch) >= 0
-      );
-    }
-    this.genericPackages = packages;   
   }
 
   public searchPackage(): void {
