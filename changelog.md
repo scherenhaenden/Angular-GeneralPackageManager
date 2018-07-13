@@ -1,5 +1,13 @@
 # Changelog
 
+
+## 0.1
+### Added
+- Add real service for Nuget.
+- Packages are loaded via Nuget.
+- The search function loads packages after keyup Enter.
+
+
 ## 0.0.1
 ### Added
 - Add Draft and litle test for packages view
