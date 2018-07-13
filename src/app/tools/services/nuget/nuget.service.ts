@@ -23,13 +23,24 @@ export class NugetService {
         return this.http.get(this.nugetRoutes.IndexURL);
     }
 
-    public findPackageStartingWith(nameOfPackage: string): Observable<object>{
+    public findPackageStartingWith(nameOfPackage: string): Observable<SearchAutoCompleteResponseModel>{
 
         // GET {@id}?q={QUERY}&skip={SKIP}&take={TAKE}&prerelease={PRERELEASE}&semVerLevel={SEMVERLEVEL}
         // GET https://api-v2v3search-0.nuget.org/autocomplete?q=storage&prerelease=true
 
         let urlWithQuery = this.nugetRoutes.SearchAutocompleteService + `?q=${nameOfPackage}`;         
-        return this.http.get(urlWithQuery);
+        let response = <Observable<SearchAutoCompleteResponseModel>>this.http.get(urlWithQuery);
+        return response;
+    }
+
+    public findPackageStartingWith2(nameOfPackage: string): Promise<SearchAutoCompleteResponseModel>{
+
+        // GET {@id}?q={QUERY}&skip={SKIP}&take={TAKE}&prerelease={PRERELEASE}&semVerLevel={SEMVERLEVEL}
+        // GET https://api-v2v3search-0.nuget.org/autocomplete?q=storage&prerelease=true
+
+        let urlWithQuery = this.nugetRoutes.SearchAutocompleteService + `?q=${nameOfPackage}`;         
+        let response = <Promise<SearchAutoCompleteResponseModel>>this.http.get(urlWithQuery).toPromise();        
+        return response;
     }
 
 
