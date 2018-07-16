@@ -1,7 +1,8 @@
-import { SearchAutoCompleteResponseModel } from "../../models/packages/services/SearchAutoCompleteResponse.model";
+import { SearchAutoCompleteResponseModel } from "../../models/packages/services/nuget/SearchAutoCompleteResponse.model";
 import { GenericPackage } from "../../models/packages/generic.package";
 import { IgenerickPackageParser } from "./igenerick.package.parser";
-import { Injectable } from "../../../../node_modules/@angular/core";
+import { Injectable } from '@angular/core';
+import { NugetSearchResponseModel } from "../../models/packages/services/npm/nuget.search.response.model";
 
 
 @Injectable(/*{
@@ -17,6 +18,18 @@ export class GenerickPackageParser implements IgenerickPackageParser {
         for (let entry of searchAutoCompleteResponseModel.data) {
           genericPackage = new GenericPackage() ;
           genericPackage.Name = entry;
+          genericPackages.push(genericPackage);
+        }
+        return genericPackages;
+    }
+
+    public parseSeachPackagesNPMToGenericPackage(nugetSearchResponseModel: NugetSearchResponseModel): GenericPackage[]{
+        
+        let genericPackages = new Array<GenericPackage> ();
+        let genericPackage = new GenericPackage() ;
+        for (let entry of nugetSearchResponseModel.objects) {
+          genericPackage = new GenericPackage() ;
+          genericPackage.Name = entry.package.name;
           genericPackages.push(genericPackage);
         }
         return genericPackages;
