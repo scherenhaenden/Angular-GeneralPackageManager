@@ -24,55 +24,8 @@ export class PackageService {
 
     public searchAutoCompleteResponseModel = new SearchAutoCompleteResponseModel();
 
-    public getPackages(packageName:string):any {
-        
-        /*this.nugetService.findPackageStartingWith(packageName)
-            .subscribe(data => {    
-              
-              this.searchAutoCompleteResponseModel= data;                    
-              this.parseObects();
-              return data;
 
-        });*/
-
-        let obs= this.nugetService.findPackageStartingWith(packageName);
-
-        
-       
-
-        obs.subscribe(data => {    
-              
-            this.searchAutoCompleteResponseModel= data;
-            
-        
-
-            //this.parseObects();
-            
-            return data;
-
-      });
-
-
-
-        /*let response = this.nugetService.findPackageStartingWith(packageName);
-        return response;*/
-    }
-
-    /*var secondMethod = function(someStuff) {
-        var promise = new Promise(function(resolve, reject){
-           setTimeout(function() {
-              console.log('second method completed');
-              resolve({newData: someStuff.data + ' some more data'});
-           }, 2000);
-        });
-        return promise;
-     };*/
-
-
-
-
-
-    public async  getPackages2(packageName:string):Promise<GenericPackage[]> {
+    public async  getPackages(packageName:string):Promise<GenericPackage[]> {
         let packagesToGetResolved =  this.nugetService.findPackageStartingWith2(packageName).
         then(
             value=>{
@@ -80,11 +33,9 @@ export class PackageService {
             }
         );
         return packagesToGetResolved;
-            
-        
        
     }
-    
+
     private parseObects(searchAutoCompleteResponseModel: SearchAutoCompleteResponseModel): GenericPackage[]{
         let genericPackages = new Array<GenericPackage> ();
         let genericPackage = new GenericPackage() ;
