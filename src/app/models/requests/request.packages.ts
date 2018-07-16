@@ -1,4 +1,5 @@
-export class RequestPackages {
-    
+export class RequestPackagesGeneric {
+    public Name:string;
+    public PackageSystem:string;   
 
 }
