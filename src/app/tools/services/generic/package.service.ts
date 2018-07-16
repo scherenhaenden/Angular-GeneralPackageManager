@@ -73,52 +73,18 @@ export class PackageService {
 
 
     public async  getPackages2(packageName:string):Promise<GenericPackage[]> {
-        let be =  this.nugetService.findPackageStartingWith2(packageName).
+        let packagesToGetResolved =  this.nugetService.findPackageStartingWith2(packageName).
         then(
             value=>{
                 return this.parseObects(value);
             }
-            
-            
         );
-        
-        
-
-        console.log(be);
-      
-        
-
-
-        return be;
+        return packagesToGetResolved;
             
         
        
     }
-
-   /* private parseObects2(searchAutoCompleteResponseModel: SearchAutoCompleteResponseModel): Promise<any>{
-
-        /*return new promise<GenericPackage[]> (resolve => this.parseObects(searchAutoCompleteResponseModel))=> {
-            this.parseObects(searchAutoCompleteResponseModel);
-        });*/
-        /*Promise.resolve()
-
-        return new Promise<any>((searchAutoCompleteResponseModel) => {
-            this.parseObects(searchAutoCompleteResponseModel);
-        });*/
-
-       /* let genericPackages = new Array<GenericPackage> ();
-        let genericPackage = new GenericPackage() ;
-        for (let entry of searchAutoCompleteResponseModel.data) {
-          genericPackage = new GenericPackage() ;
-          genericPackage.Name = entry;
-          genericPackages.push(genericPackage);
-        }
-        return genericPackages;*/
-        
-     // }
-
     
-
     private parseObects(searchAutoCompleteResponseModel: SearchAutoCompleteResponseModel): GenericPackage[]{
         let genericPackages = new Array<GenericPackage> ();
         let genericPackage = new GenericPackage() ;
