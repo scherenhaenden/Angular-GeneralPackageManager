@@ -11,6 +11,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NugetService } from './tools/services/nuget/nuget.service';
 import { PackageService } from './tools/services/generic/package.service';
 import { environment } from '../environments/environment';
+import { GenerickPackageParser } from './tools/parsers/generick.package.parser';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -26,8 +31,10 @@ import { environment } from '../environments/environment';
     RouterTestingModule
     
   ],
-  providers: [NugetService, 
-    PackageService
+  providers: [
+    NugetService, 
+    PackageService,
+    GenerickPackageParser
    
   
   ],
