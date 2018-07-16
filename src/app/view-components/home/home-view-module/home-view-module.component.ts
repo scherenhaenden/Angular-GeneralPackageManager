@@ -50,28 +50,8 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
       }
   }
 
-  private async getPackateStartingNameBy() {
-
-    /*this.packageService.getPackages(this.searchInput) .subscribe(data => {      
-      this.searchAutoCompleteResponseModel= <SearchAutoCompleteResponseModel>data;      
-      this.parseObects();
-    });*/
-
-    let any= await this.packageService.getPackages2(this.searchInput);
-    //this.parseObects();
-    /*this.genericPackages = any;*/
-    console.log(any);
-    
-  
-   // this.parseObects();
-
-/*
-
-    this.nugetService.findPackageStartingWith(this.searchInput)
-    .subscribe(data => {      
-      this.searchAutoCompleteResponseModel= <SearchAutoCompleteResponseModel>data;      
-      this.parseObects();
-    });*/
+  private async getPackateStartingNameBy() {   
+    this.genericPackages = await this.packageService.getPackages2(this.searchInput);
   }
 
   private parseObects(){
