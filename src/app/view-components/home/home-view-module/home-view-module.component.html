@@ -10,10 +10,10 @@
         </div>
         <form class="search-row-size">
             <div class="col-12 no-padding search-row-size">
-                <select class="form-control search-row-size" id="sel1">
+                <select   name="selectedPackageSystem" [(ngModel)]="selectedPackageSystem" class="form-control search-row-size" id="sel1">
                 <option>-</option>
-                <option>nuget</option>
-                </select>
+                <option *ngFor="let item of packagesList.PackaceSystems; let i = index" [value]="item">{{item}}</option>
+                </select>                
                 <br>
             </div>
         </form>

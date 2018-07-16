@@ -1,9 +1,12 @@
-import { Datum } from './../../../models/packages/services/datum';
+import { Datum } from '../../../models/packages/services/nuget/datum';
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@angular/core';
 import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
 import { GenericPackage } from '../../../models/packages/generic.package';
 import { NugetService } from '../../../tools/services/nuget/nuget.service';
-import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/SearchAutoCompleteResponse.model';
+import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/nuget/SearchAutoCompleteResponse.model';
+import { PackageService } from '../../../tools/services/generic/package.service';
+import { PackagesList } from '../../../models/requests/packages.list';
+
 
 
 @Component({
@@ -19,8 +22,12 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   public searchInput: string;
   public searchAutoCompleteResponseModel:SearchAutoCompleteResponseModel;
   public currentPkg: GenericPackage;
+  public packagesList = new PackagesList();
+  public selectedPackageSystem: string;
 
-  constructor(private nugetService: NugetService) { }
+  constructor(private nugetService: NugetService
+              ,private packageService: PackageService
+               ) { }
 
   ngOnInit() {}
 
@@ -35,20 +42,6 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
     this.currentPkg = pkg;
   }
 
-
- public searchPackageOsmany(pkgsSearch: string): void {
-    var packages = this.mockingLoadPackaged.getSimpleListOfPackages();
-    if (pkgsSearch && pkgsSearch.length > 0) {
-      packages = packages.filter(
-        pkg =>
-          Object.values(pkg)
-            .join()
-            .indexOf(pkgsSearch) >= 0
-      );
-    }
-    this.genericPackages = packages;   
-  }
-
   public searchPackage(): void {
       try {
         this.getPackateStartingNameBy(); 
@@ -60,22 +53,8 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
       }
   }
 
-  private getPackateStartingNameBy() {
-    this.nugetService.findPackageStartingWith(this.searchInput)
-    .subscribe(data => {      
-      this.searchAutoCompleteResponseModel= <SearchAutoCompleteResponseModel>data;      
-      this.parseObects();
-    });
-  }
-
-  private parseObects(){
-    this.genericPackages = new Array<GenericPackage> ();
-    let genericPackage = new GenericPackage() ;
-    for (let entry of this.searchAutoCompleteResponseModel.data) {
-      genericPackage = new GenericPackage() ;
-      genericPackage.Name = entry;
-      this.genericPackages.push(genericPackage);
-    }
-  }
+  private async getPackateStartingNameBy() {   
+    this.genericPackages = await this.packageService.getPackages(this.searchInput, this.selectedPackageSystem);
+  }  
 
 }

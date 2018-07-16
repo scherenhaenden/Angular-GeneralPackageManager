@@ -9,6 +9,11 @@ import { AppRoutingModule } from './app.routing.module';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NugetService } from './tools/services/nuget/nuget.service';
+import { PackageService } from './tools/services/generic/package.service';
+import { environment } from '../environments/environment';
+import { GenerickPackageParser } from './tools/parsers/generick.package.parser';
+import { NPMService } from './tools/services/npm/npm.service';
+
 
 
 
@@ -29,7 +34,14 @@ import { NugetService } from './tools/services/nuget/nuget.service';
     RouterTestingModule
     
   ],
-  providers: [NugetService],
+  providers: [
+    NugetService, 
+    PackageService,
+    GenerickPackageParser,
+    NPMService
+   
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule extends EnsureModuleLoadedOnceGuard {
