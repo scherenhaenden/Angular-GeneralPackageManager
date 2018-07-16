@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { NugetRoutes } from '../../packages/nuget/services.routes/nuget.routes';
 import { ActivatedRoute } from '@angular/router';
-import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/SearchAutoCompleteResponse.model';
+import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/nuget/SearchAutoCompleteResponse.model';
 
 @Injectable(/*{
  // providedIn: 'root',
@@ -33,7 +33,7 @@ export class NugetService {
         return response;
     }
 
-    public findPackageStartingWith2(nameOfPackage: string): Promise<SearchAutoCompleteResponseModel>{
+    public findPackageStartingWithPromise(nameOfPackage: string): Promise<SearchAutoCompleteResponseModel>{
 
         // GET {@id}?q={QUERY}&skip={SKIP}&take={TAKE}&prerelease={PRERELEASE}&semVerLevel={SEMVERLEVEL}
         // GET https://api-v2v3search-0.nuget.org/autocomplete?q=storage&prerelease=true
