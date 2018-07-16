@@ -1,10 +1,11 @@
-import { Datum } from '../../../models/packages/services/datum';
+import { Datum } from '../../../models/packages/services/nuget/datum';
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@angular/core';
 import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
 import { GenericPackage } from '../../../models/packages/generic.package';
 import { NugetService } from '../../../tools/services/nuget/nuget.service';
-import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/SearchAutoCompleteResponse.model';
+import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/nuget/SearchAutoCompleteResponse.model';
 import { PackageService } from '../../../tools/services/generic/package.service';
+import { PackagesList } from '../../../models/requests/packages.list';
 
 
 
@@ -21,6 +22,8 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   public searchInput: string;
   public searchAutoCompleteResponseModel:SearchAutoCompleteResponseModel;
   public currentPkg: GenericPackage;
+  public packagesList = new PackagesList();
+  public selectedPackageSystem: string;
 
   constructor(private nugetService: NugetService
               ,private packageService: PackageService
@@ -51,7 +54,7 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   }
 
   private async getPackateStartingNameBy() {   
-    this.genericPackages = await this.packageService.getPackages(this.searchInput);
+    this.genericPackages = await this.packageService.getPackages(this.searchInput, this.selectedPackageSystem);
   }  
 
 }
