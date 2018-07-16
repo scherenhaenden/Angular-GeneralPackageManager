@@ -51,17 +51,7 @@ export class HomeViewModuleComponent implements OnInit, AfterContentInit {
   }
 
   private async getPackateStartingNameBy() {   
-    this.genericPackages = await this.packageService.getPackages2(this.searchInput);
-  }
-
-  private parseObects(){
-    this.genericPackages = new Array<GenericPackage> ();
-    let genericPackage = new GenericPackage() ;
-    for (let entry of this.searchAutoCompleteResponseModel.data) {
-      genericPackage = new GenericPackage() ;
-      genericPackage.Name = entry;
-      this.genericPackages.push(genericPackage);
-    }
-  }
+    this.genericPackages = await this.packageService.getPackages(this.searchInput);
+  }  
 
 }
