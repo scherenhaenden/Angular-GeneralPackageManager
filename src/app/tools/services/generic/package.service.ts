@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NugetService } from "src/app/tools/services/nuget/nuget.service";
 import { GenericPackage } from "../../../models/packages/generic.package";
 import { filter, map, take, tap } from 'rxjs/operators';
+import { promise } from '../../../../../node_modules/protractor';
 
 
 @Injectable(/*{
@@ -57,26 +58,64 @@ export class PackageService {
         return response;*/
     }
 
+    /*var secondMethod = function(someStuff) {
+        var promise = new Promise(function(resolve, reject){
+           setTimeout(function() {
+              console.log('second method completed');
+              resolve({newData: someStuff.data + ' some more data'});
+           }, 2000);
+        });
+        return promise;
+     };*/
+
+
+
+
+
     public async  getPackages2(packageName:string):Promise<GenericPackage[]> {
-        let be = await this.nugetService.findPackageStartingWith2(packageName);
-
-        let be2 = this.parseObects(be);
+        let be =  this.nugetService.findPackageStartingWith2(packageName).
+        then(
+            value=>{
+                return this.parseObects(value);
+            }
+            
+            
+        );
         
         
 
-        let b3 = new Promise<GenericPackage[]>(resolve =>{be2});
-
+        console.log(be);
+      
         
 
 
-
-        //return this.nugetService.findPackageStartingWith2(packageName);
-        return b3;
+        return be;
             
         
-        /*let response = this.nugetService.findPackageStartingWith(packageName);
-        return response;*/
+       
     }
+
+   /* private parseObects2(searchAutoCompleteResponseModel: SearchAutoCompleteResponseModel): Promise<any>{
+
+        /*return new promise<GenericPackage[]> (resolve => this.parseObects(searchAutoCompleteResponseModel))=> {
+            this.parseObects(searchAutoCompleteResponseModel);
+        });*/
+        /*Promise.resolve()
+
+        return new Promise<any>((searchAutoCompleteResponseModel) => {
+            this.parseObects(searchAutoCompleteResponseModel);
+        });*/
+
+       /* let genericPackages = new Array<GenericPackage> ();
+        let genericPackage = new GenericPackage() ;
+        for (let entry of searchAutoCompleteResponseModel.data) {
+          genericPackage = new GenericPackage() ;
+          genericPackage.Name = entry;
+          genericPackages.push(genericPackage);
+        }
+        return genericPackages;*/
+        
+     // }
 
     
 
