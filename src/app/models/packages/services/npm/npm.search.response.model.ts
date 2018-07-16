@@ -1,6 +1,6 @@
 import { ObjectsEntity } from "./objects.entity";
 
-export class NugetSearchResponseModel {    
+export class NPMSearchResponseModel {    
     public objects?: (ObjectsEntity)[] | null;
     public total: number;
     public time: string; 
