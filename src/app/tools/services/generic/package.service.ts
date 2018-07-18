@@ -11,6 +11,7 @@ import { promise } from 'protractor';
 import { GenerickPackageParser } from '../../parsers/generick.package.parser';
 import { NPMService } from '../npm/npm.service';
 import { NPMSearchResponseModel } from '../../../models/packages/services/npm/npm.search.response.model';
+import { PIPService } from '../pip/pip.service';
 
 
 @Injectable(/*{
@@ -21,6 +22,7 @@ export class PackageService {
 
     constructor(private nugetService: NugetService
                 ,private nPMService: NPMService
+                ,private pIPService: PIPService
                ,private http: HttpClient
                 ,private route: ActivatedRoute
                 ,public generickPackageParser: GenerickPackageParser
@@ -43,13 +45,31 @@ export class PackageService {
         }
         else if (selectedPackageSystem === 'NPM'){
             let packagesToGetResolved =  this.nPMService.findPackageStartingWithPromise(packageName).
-        then(
-            value=>{
-                return this.parseObects(selectedPackageSystem, value);
-            }
-        );
-        return packagesToGetResolved;  
-    }
+            then(
+                value=>{
+                    return this.parseObects(selectedPackageSystem, value);
+                }
+            );
+            return packagesToGetResolved;  
+        }
+        else if (selectedPackageSystem === 'PIP'){
+            
+            let packagesToGetResolved =  this.pIPService.findPackageStartingWithPromise(packageName).
+            then(
+                value=>{
+                    console.log(value);
+                    return null;
+                    
+                    //return this.parseObects(selectedPackageSystem, value);
+                }
+            ).catch(
+                (err) =>{ console.error(err);
+                    return null;
+                }
+                
+            );
+            return  new Array<GenericPackage> ();;  
+        }
 
 
 
