@@ -1,0 +1,11 @@
+{
+    "//pypi.org/": {
+        "target":  {
+          "host": "https://pypi.org/",
+          "protocol": "https:"          
+        },
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "info"
+     }
+  }
