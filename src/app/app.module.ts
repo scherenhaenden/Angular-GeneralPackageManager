@@ -13,6 +13,7 @@ import { PackageService } from './tools/services/generic/package.service';
 import { environment } from '../environments/environment';
 import { GenerickPackageParser } from './tools/parsers/generick.package.parser';
 import { NPMService } from './tools/services/npm/npm.service';
+import { PIPService } from './tools/services/pip/pip.service';
 
 
 
@@ -38,7 +39,8 @@ import { NPMService } from './tools/services/npm/npm.service';
     NugetService, 
     PackageService,
     GenerickPackageParser,
-    NPMService
+    NPMService,
+    PIPService
    
   
   ],
