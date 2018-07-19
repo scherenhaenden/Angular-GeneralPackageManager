@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NugetRoutes } from '../../packages/nuget/services.routes/nuget.routes';
 import { ActivatedRoute } from '@angular/router';
 import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/nuget/SearchAutoCompleteResponse.model';
@@ -29,11 +29,17 @@ export class NPMService {
         // GET {@id}?q={QUERY}&skip={SKIP}&take={TAKE}&prerelease={PRERELEASE}&semVerLevel={SEMVERLEVEL}
         // GET https://api-v2v3search-0.nuget.org/autocomplete?q=storage&prerelease=true
 
-        //let urlWithQuery = this.nPMRoutes.SearchAutocompleteService + `/${nameOfPackage}`;         
+        //let urlWithQuery = this.nPMRoutes.SearchAutocompleteService + `/${nameOfPackage}`;    
+        
+        let headers = new HttpHeaders().
+        set('Access-Control-Allow-Origin','*').        
+        set('Access-Control-Allow-Headers','Content-Type').
+        set('Content-Type','text/json').
+        set('Access-Control-Allow-Methods','GET,POST');
 
         let urlWithQuery = this.nPMRoutes.SearchAutocompleteService + `/-/v1/search?text=${nameOfPackage}&size=20`;         
         
-        let response = <Promise<SearchAutoCompleteResponseModel>>this.http.get(urlWithQuery).toPromise();        
+        let response = <Promise<SearchAutoCompleteResponseModel>>this.http.get(urlWithQuery,{headers:headers}).toPromise();        
         return response;
     }
 
