@@ -23,3 +23,17 @@ https://pypi.org/simple/<project_name>/
 
 ##Package Info
 https://pypi.org/pypi/<project_name>/json
+
+
+#Raw list of endpoints that have to be cathegorized:
+https://api.nuget.org/v3/index.json
+https://api.nuget.org/v3/index.json
+https://api-v2v3search-0.nuget.org/query
+https://luarocks.org/manifest-5.1.json
+https://api-v2v3search-0.nuget.org/query?q=nuget
+https://api.nuget.org/v3/catalog0/index.json
+https://api.nuget.org/v3/index.json
+https://api-v2v3search-0.nuget.org/autocomplete?q=vc
+https://skimdb.npmjs.com/registry/_all_docs
+https://pypi.org/pypi/house/json
+https://pypi.org/rss/packages.xml
