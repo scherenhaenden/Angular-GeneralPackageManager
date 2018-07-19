@@ -7,6 +7,6 @@ export class PackagesList {
 
 
     constructor(){
-        this.PackaceSystems = ['Nuget','NPM','PIP'];
+        this.PackaceSystems = ['Nuget','NPM','PIP','Lua'];
     }
 }
