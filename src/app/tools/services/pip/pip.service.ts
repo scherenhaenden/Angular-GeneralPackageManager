@@ -38,13 +38,20 @@ export class PIPService {
         /*set('Access-Control-Allow-Methods','GET, POST, PATCH, PUT, DELETE, OPTIONS').
         set('Access-Control-Allow-Headers','Origin, Content-Type, X-Auth-Token').
         set('X-cache','hit').*/
-        set('Access-Control-Allow-Methods','GET, OPTIONS').
+        /*set('Access-Control-Allow-Methods','GET, OPTIONS').
         set('Access-Control-Allow-Headers','*').
         set('Access-Control-Allow-Origin','*').
         set('Access-Control-Allow-Credentials','true').
         set('Content-Type','text/html').
-        set('Accept','text/html').
-        set('responseType','text/html');
+        set('Accept','text/html').*/
+        //set('responseType','text/html');
+        
+       /* set('X-Content-Type-Options','nosniff').
+        set('Access-Control-Allow-Origin','*').*/
+        set('responseType','text/html').
+        set('Content-Encoding','zip').
+        set('Access-Control-Allow-Origin','http://localhost:4200').
+        set('content-type','text/xml; charset=UTF-8');
 
 
         
@@ -68,7 +75,7 @@ export class PIPService {
             
             
           };
-          try{
+         /* try{
             let response = await <Promise<any>>this.http.get('https://pypi.org/rss/packages.xml',{headers:headers}).toPromise(); 
             alert(response) ;
 
@@ -76,11 +83,13 @@ export class PIPService {
           catch(e)
           {
               console.log(e);
-          }
+          }*/
 
-          
+          /*this.http.get(url, {observe: 'response'})
+    .subscribe(resp => console.log(resp.headers))*/
                 
         let response2 = <Promise<any>>this.http.get('https://pypi.org/rss/packages.xml',{headers:headers}).toPromise();  
+        //let response2 = <Promise<any>>this.http.get('/rss/packages.xml').toPromise();  
 
         return response2;
 
