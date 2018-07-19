@@ -1,7 +1,7 @@
 {
-    "//pypi.org/": {
+    "/rss": {
         "target":  {
-          "host": "https://pypi.org/",
+          "host": "https://pypi.org",
           "protocol": "https:"          
         },
         "secure": false,
