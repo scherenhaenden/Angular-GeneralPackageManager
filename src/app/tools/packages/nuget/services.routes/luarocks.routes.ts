@@ -1,5 +1,4 @@
-export class NugetRoutes {
-    public IndexURL: string;
+export class LuaRocksRoutes {    
     public Manifest: string;
 
     constructor(){
