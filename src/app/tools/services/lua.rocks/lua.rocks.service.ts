@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { LuaRocksRoutes } from '../../packages/nuget/services.routes/luarocks.routes';
 import { LuaRocksManifestRootResponse } from '../../../models/packages/services/lua.rocks/lua.rocks.manifest.root.response';
-import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
 import { MockingWirdLuarocksData } from '../../../Mock/moking.lua.rocks.weird.data';
 
 @Injectable(/*{
@@ -25,13 +24,8 @@ export class LuaRockservice {
     }
 
     public findPackageStartingWithPromise(nameOfPackage: string): Promise<LuaRocksManifestRootResponse>{        
-
-        let urlWithQuery = this.luaRocksRoutes.Manifest;         
-
-        
-        
-        let response = <Promise<LuaRocksManifestRootResponse>>this.http.get(new MockingWirdLuarocksData().getdata()).toPromise();        
-               
+        let urlWithQuery = this.luaRocksRoutes.Manifest;   
+        let response = <Promise<LuaRocksManifestRootResponse>>this.http.get(new MockingWirdLuarocksData().getdata()).toPromise();                       
         return response;
     }
 
