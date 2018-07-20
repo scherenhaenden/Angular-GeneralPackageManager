@@ -11,7 +11,9 @@ import { promise } from 'protractor';
 import { GenerickPackageParser } from '../../parsers/generick.package.parser';
 import { NPMService } from '../npm/npm.service';
 import { NPMSearchResponseModel } from '../../../models/packages/services/npm/npm.search.response.model';
-import { LuaRockservice } from '../../../tools/services/lua.rocks/lua.rocks.service';
+import { LuaRockservice } from '../lua.rocks/lua.rocks.service';
+import { LuaRocksManifestRootResponse } from '../../../models/packages/services/lua.rocks/lua.rocks.manifest.root.response';
+import { MockingWirdLuarocksData } from '../../../Mock/moking.lua.rocks.weird.data';
 @Injectable(/*{
     // providedIn: 'root',
    }*/)
@@ -29,8 +31,7 @@ export class PackageService {
 
     public searchAutoCompleteResponseModel = new SearchAutoCompleteResponseModel();
 
-    public async  getPackages(packageName:string, selectedPackageSystem:string):Promise<GenericPackage[]> {
-        
+    public async  getPackages(packageName:string, selectedPackageSystem:string):Promise<GenericPackage[]> {        
         
         if(selectedPackageSystem === 'Nuget'){
                 let packagesToGetResolved =  this.nugetService.findPackageStartingWithPromise(packageName).
@@ -54,19 +55,23 @@ export class PackageService {
         else if (selectedPackageSystem === 'Lua'){
             let packagesToGetResolved =  this.luaRockservice.findPackageStartingWithPromise(packageName).
             then(
-                value=>{
-                    console.log(selectedPackageSystem);
+                value=>{     
+                              
+
+                  
                     return this.parseObects(selectedPackageSystem, value);
                 }
+            ).catch(
+                value=>{     
+                    
+                    return  this.parseObects(selectedPackageSystem, new MockingWirdLuarocksData().getdata());
+                }
+                           
             );
+            
         
             return packagesToGetResolved;  
-        }
-
-
-
-
-             
+        } 
     }
 
     private parseObects(selectedPackageSystem:string, responseModel: any): GenericPackage[]{
@@ -77,6 +82,10 @@ export class PackageService {
         else if(selectedPackageSystem === 'NPM'){
             console.log(responseModel);
             return this.generickPackageParser.parseSeachPackagesNPMToGenericPackage(<NPMSearchResponseModel><any>responseModel); ;  
+        }
+        else if(selectedPackageSystem === 'Lua'){
+//            console.log(responseModel);
+            return this.generickPackageParser.parseSeachPackagesLuaRocksToGenericPackage(<LuaRocksManifestRootResponse><any>responseModel); ;  
         }
 
 
