@@ -6,8 +6,6 @@ import { LuaRocksManifestRootResponse } from '../../../models/packages/services/
 import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
 import { MockingWirdLuarocksData } from '../../../Mock/moking.lua.rocks.weird.data';
 
-
-
 @Injectable(/*{
  // providedIn: 'root',
 }*/)
