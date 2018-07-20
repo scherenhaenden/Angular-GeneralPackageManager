@@ -55,21 +55,14 @@ export class PackageService {
         else if (selectedPackageSystem === 'Lua'){
             let packagesToGetResolved =  this.luaRockservice.findPackageStartingWithPromise(packageName).
             then(
-                value=>{     
-                              
-
-                  
+                value=>{  
                     return this.parseObects(selectedPackageSystem, value);
                 }
             ).catch(
-                value=>{     
-                    
+                value=>{  
                     return  this.parseObects(selectedPackageSystem, new MockingWirdLuarocksData().getdata());
-                }
-                           
+                }                           
             );
-            
-        
             return packagesToGetResolved;  
         } 
     }
@@ -87,8 +80,6 @@ export class PackageService {
 //            console.log(responseModel);
             return this.generickPackageParser.parseSeachPackagesLuaRocksToGenericPackage(<LuaRocksManifestRootResponse><any>responseModel); ;  
         }
-
-
         //return this.generickPackageParser.parseSeachPackagesNugetToGenericPackage(searchAutoCompleteResponseModel);       
     }
 
