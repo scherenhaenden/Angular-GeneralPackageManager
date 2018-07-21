@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2
+### Added
+- Support for Lua has been added but is not completed.
+- The Application is now a Electron/Angular Application
+
+
 
 ## 0.1
 ### Added

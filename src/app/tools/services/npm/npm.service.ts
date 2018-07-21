@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { NugetRoutes } from '../../packages/nuget/services.routes/nuget.routes';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { SearchAutoCompleteResponseModel } from '../../../models/packages/services/nuget/SearchAutoCompleteResponse.model';
 import { NPMRoutes } from '../../packages/nuget/services.routes/npm.routes';
@@ -28,8 +26,6 @@ export class NPMService {
 
         // GET {@id}?q={QUERY}&skip={SKIP}&take={TAKE}&prerelease={PRERELEASE}&semVerLevel={SEMVERLEVEL}
         // GET https://api-v2v3search-0.nuget.org/autocomplete?q=storage&prerelease=true
-
-        //let urlWithQuery = this.nPMRoutes.SearchAutocompleteService + `/${nameOfPackage}`;         
 
         let urlWithQuery = this.nPMRoutes.SearchAutocompleteService + `/-/v1/search?text=${nameOfPackage}&size=20`;         
         
