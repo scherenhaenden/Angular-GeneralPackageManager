@@ -1,13 +1,16 @@
 {
   "name": "general-package-manager",
   "version": "0.0.0",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "ng build && electron .",
+    "electron-aot": "ng build --prod && electron ."
   },
   "private": true,
   "dependencies": {
@@ -20,8 +23,13 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
+    "electron": "^2.0.5",
+    "jquery": "^3.3.1",
     "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.2.1",
+    "rxjs-tslint": "^0.1.5",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
