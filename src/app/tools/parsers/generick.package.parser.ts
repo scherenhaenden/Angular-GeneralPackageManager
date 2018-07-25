@@ -40,16 +40,24 @@ export class GenerickPackageParser implements IgenerickPackageParser {
     public parseSeachPackagesLuaRocksToGenericPackage(luaRocksManifestRootResponse: LuaRocksManifestRootResponse): GenericPackage[]{
         
         let genericPackages = new Array<GenericPackage> ();
-        let genericPackage = new GenericPackage() ;
+        let genericPackage = new GenericPackage() ;        
+        console.log(luaRocksManifestRootResponse);
+        let obj1:any;
 
-        let obj = JSON.parse(luaRocksManifestRootResponse.toString());
-        console.log(obj);
+        try{
+            obj1 = JSON.parse(<any>luaRocksManifestRootResponse);
 
-        let rootKeys = this.getAllKeysFromDynamicObject(obj);
-        let packagesKeys = this.getAllKeysFromDynamicObject((obj['repository']));
+        }
+        catch(error){
+            obj1 = <any>luaRocksManifestRootResponse;
 
-        console.log(packagesKeys);
+        }
+      
+        //console.log(obj);
+        let rootKeys = this.getAllKeysFromDynamicObject(obj1);
+        let packagesKeys = this.getAllKeysFromDynamicObject((obj1['repository']));
 
+        //console.log(packagesKeys);
         for (let entry of packagesKeys) {
             genericPackage = new GenericPackage() ;
             genericPackage.Name = <string>entry

@@ -31,7 +31,7 @@ export class PackageService {
 
     public searchAutoCompleteResponseModel = new SearchAutoCompleteResponseModel();
 
-    public async  getPackages(packageName:string, selectedPackageSystem:string):Promise<GenericPackage[]> {        
+    public async getPackages(packageName:string, selectedPackageSystem:string):Promise<GenericPackage[]> {        
         
         if(selectedPackageSystem === 'Nuget'){
                 let packagesToGetResolved =  this.nugetService.findPackageStartingWithPromise(packageName).
@@ -56,11 +56,13 @@ export class PackageService {
             let packagesToGetResolved =  this.luaRockservice.findPackageStartingWithPromise(packageName).
             then(
                 value=>{  
+                    console.log(value);
                     return this.parseObects(selectedPackageSystem, value);
                 }
             ).catch(
                 value=>{  
-                    return  this.parseObects(selectedPackageSystem, new MockingWirdLuarocksData().getdata());
+                    console.log(value);
+                    return  this.parseObects(selectedPackageSystem, value);
                 }                           
             );
             return packagesToGetResolved;  
@@ -78,6 +80,8 @@ export class PackageService {
         }
         else if(selectedPackageSystem === 'Lua'){
 //            console.log(responseModel);
+
+
             return this.generickPackageParser.parseSeachPackagesLuaRocksToGenericPackage(<LuaRocksManifestRootResponse><any>responseModel); ;  
         }
         //return this.generickPackageParser.parseSeachPackagesNugetToGenericPackage(searchAutoCompleteResponseModel);       

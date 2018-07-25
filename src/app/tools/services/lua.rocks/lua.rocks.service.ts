@@ -13,6 +13,7 @@ export class LuaRockservice {
 
     private indexEndpoint: string; 
     private luaRocksRoutes = new LuaRocksRoutes();
+    private response:Promise<LuaRocksManifestRootResponse>;
 
     constructor(private http: HttpClient,
         private route: ActivatedRoute
@@ -23,10 +24,19 @@ export class LuaRockservice {
         return this.http.get(this.luaRocksRoutes.Manifest);
     }
 
+    public getListOfAllPackages(): Promise<LuaRocksManifestRootResponse>{        
+        let urlWithQuery = this.luaRocksRoutes.Manifest;        
+        if(!this.response)  {
+            this.response = <Promise<LuaRocksManifestRootResponse>>this.http.get(urlWithQuery).toPromise();  
+        }
+        return this.response;
+    }
+
     public findPackageStartingWithPromise(nameOfPackage: string): Promise<LuaRocksManifestRootResponse>{        
-        let urlWithQuery = this.luaRocksRoutes.Manifest;   
-        let response = <Promise<LuaRocksManifestRootResponse>>this.http.get(new MockingWirdLuarocksData().getdata()).toPromise();                       
-        return response;
+        /*let urlWithQuery = this.luaRocksRoutes.Manifest;   
+        let response = <Promise<LuaRocksManifestRootResponse>>this.http.get(urlWithQuery).toPromise();                       
+        return response;*/
+        return this.getListOfAllPackages();
     }
 
 
