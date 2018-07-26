@@ -53,19 +53,23 @@ export class PackageService {
             return packagesToGetResolved;  
         }
         else if (selectedPackageSystem === 'Lua'){
-            let packagesToGetResolved =  this.luaRockservice.findPackageStartingWithPromise(packageName).
-            then(
-                value=>{  
-                    console.log(value);
-                    return this.parseObects(selectedPackageSystem, value);
-                }
-            ).catch(
-                value=>{  
-                    console.log(value);
-                    return  this.parseObects(selectedPackageSystem, value);
-                }                           
-            );
-            return packagesToGetResolved;  
+          let packagesToGetResolved = this.luaRockservice.getPackagesStartingBy(packageName).
+          then(
+              value=>{
+                  alert(value);
+                  return value;
+
+              }
+            )
+          ;
+          console.log(packagesToGetResolved);
+          console.log(await packagesToGetResolved);
+          alert(await packagesToGetResolved);
+          
+      
+          return packagesToGetResolved;  
+      
+            //return this.luaRockservice.getPackagesStartingBy(packageName);
         } 
     }
 
