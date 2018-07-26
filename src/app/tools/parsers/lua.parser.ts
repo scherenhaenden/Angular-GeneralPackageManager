@@ -5,8 +5,7 @@ export class LuaParser {
     public parseSeachPackagesLuaRocksToGenericPackage(luaRocksManifestRootResponse: LuaRocksManifestRootResponse): GenericPackage[]{
         
         let genericPackages = new Array<GenericPackage> ();
-        let genericPackage = new GenericPackage() ;        
-        console.log(luaRocksManifestRootResponse);
+        let genericPackage = new GenericPackage() ;                
         let obj1:any;
 
         try{
@@ -27,11 +26,7 @@ export class LuaParser {
             genericPackage = new GenericPackage() ;
             genericPackage.Name = <string>entry
             genericPackages.push(genericPackage);
-          }
-        
-        
-       
-        
+        }
         return genericPackages;
     }
 
