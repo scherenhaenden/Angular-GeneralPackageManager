@@ -19,6 +19,8 @@ export class LuaRockservice {
 
     private indexEndpoint: string; 
     private luaRocksRoutes = new LuaRocksRoutes();
+    private allPackages:GenericPackage[];
+    private allPackagesPromise:Promise<GenericPackage[]>;
     private response:Promise<LuaRocksManifestRootResponse>;
     private luaRocksManifestRootResponse:LuaRocksManifestRootResponse;
     private luaParser = new LuaParser();
@@ -40,23 +42,44 @@ export class LuaRockservice {
         return this.response;
     }
 
-    public getListOfAllPackages(nameOfPackage: string): GenericPackage[]{        
+    public async getListOfAllPackages(nameOfPackage: string): Promise<GenericPackage[]>{        
         let urlWithQuery = this.luaRocksRoutes.Manifest;        
-        if(!this.luaRocksManifestRootResponse)  {
-            let luaRocksManifestRootResponse = this.getListOfAllPackagesPromise().
+        if(!this.response)  {
+            this.response = this.getListOfAllPackagesPromise();
+            this.allPackagesPromise = this.response.
             then(
                 value=>{
-                    let allPackages = this.luaParser.parseSeachPackagesLuaRocksToGenericPackage(value);
+                    this.allPackages = this.luaParser.parseSeachPackagesLuaRocksToGenericPackage(value);
                     if(nameOfPackage){
-                        
-                        return allPackages.filter(x=>x.Name.includes(nameOfPackage));
+                        this.allPackages = this.allPackages.filter(x=>x.Name.includes(nameOfPackage));
+                    }                    
+                    console.log('allPackages');
+                    console.log(this.allPackages);                   
 
-                    }
-                    return allPackages;
+                    return this.allPackages;
                 }
             );   
         }
-        return new Array<GenericPackage>();
+        else{
+            this.allPackagesPromise = this.response.
+            then(
+                value=>{
+                    this.allPackages = this.luaParser.parseSeachPackagesLuaRocksToGenericPackage(value);
+                    if(nameOfPackage){
+                        this.allPackages = this.allPackages.filter(x=>x.Name.includes(nameOfPackage));
+                    }                    
+                    console.log('allPackages');
+                    console.log(this.allPackages);                   
+
+                    return this.allPackages;
+                }
+            );   
+
+        }
+
+
+       return this.allPackagesPromise;
+      
     }
 
     public findPackageStartingWithPromise(nameOfPackage: string): Promise<LuaRocksManifestRootResponse>{        
@@ -68,20 +91,14 @@ export class LuaRockservice {
     }
 
     public async getPackagesStartingBy(nameOfPackage: string): Promise<GenericPackage[]>{
-        
-        let val = await this.getListOfAllPackages(nameOfPackage);
-        
 
+           
+        let resultwaited = await this.getListOfAllPackages(nameOfPackage); 
+        console.log(resultwaited)     ;
+        console.log('resultwaited')     ;
+      
 
-        return new Promise<GenericPackage[]>(
-            function (resolve, reject) {
-                val;
-                
-        
-            }
-        );
-        
-       
+        return resultwaited;
       
 
     }
