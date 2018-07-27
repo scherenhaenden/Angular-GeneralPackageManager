@@ -31,7 +31,7 @@ export class PackageService {
 
     public searchAutoCompleteResponseModel = new SearchAutoCompleteResponseModel();
 
-    public async getPackages(packageName:string, selectedPackageSystem:string):Promise<GenericPackage[]> {        
+    public async getPackages(packageName:string, selectedPackageSystem:string): Promise<GenericPackage[]> {        
         
         if(selectedPackageSystem === 'Nuget'){
                 let packagesToGetResolved =  this.nugetService.findPackageStartingWithPromise(packageName).
@@ -53,20 +53,18 @@ export class PackageService {
             return packagesToGetResolved;  
         }
         else if (selectedPackageSystem === 'Lua'){
-          let packagesToGetResolved = this.luaRockservice.getPackagesStartingBy(packageName).
+          let packagesToGetResolved = this.luaRockservice.getPackagesStartingBy(packageName)/*.
           then(
               value=>{
-                  alert(value);
+                  console.log('value');
+                  console.log(value);
                   return value;
 
               }
-            )
-          ;
-          console.log(packagesToGetResolved);
-          console.log(await packagesToGetResolved);
-          alert(await packagesToGetResolved);
           
-      
+            )*/;  
+          console.log('typeof packagesToGetResolved');          
+          console.log(packagesToGetResolved);
           return packagesToGetResolved;  
       
             //return this.luaRockservice.getPackagesStartingBy(packageName);
