@@ -26,7 +26,7 @@ export class PackageService {
                 ,private nPMService: NPMService
                 ,private pIPService: PIPService
                 ,private luaRockservice: LuaRockservice
-               ,private http: HttpClient
+                ,private http: HttpClient
                 ,private route: ActivatedRoute
                 ,public generickPackageParser: GenerickPackageParser
             
@@ -71,20 +71,10 @@ export class PackageService {
                 }
                 
             );
-            return  new Array<GenericPackage> ();;  
+            return  new Array<GenericPackage> ();
+              
         } else if (selectedPackageSystem === 'Lua'){
-          let packagesToGetResolved = this.luaRockservice.getPackagesStartingBy(packageName)/*.
-          then(
-              value=>{
-                  console.log('value');
-                  console.log(value);
-                  return value;
-
-              }
-          
-            )*/;  
-          console.log('typeof packagesToGetResolved');          
-          console.log(packagesToGetResolved);
+          let packagesToGetResolved = this.luaRockservice.getPackagesStartingBy(packageName);            
           return packagesToGetResolved;  
       
             //return this.luaRockservice.getPackagesStartingBy(packageName);
