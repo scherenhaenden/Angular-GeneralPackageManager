@@ -14,11 +14,7 @@ import { environment } from '../environments/environment';
 import { GenerickPackageParser } from './tools/parsers/generick.package.parser';
 import { NPMService } from './tools/services/npm/npm.service';
 import { PIPService } from './tools/services/pip/pip.service';
-
-
-
-
-
+import { LuaRockservice } from './tools/services/lua.rocks/lua.rocks.service';
 
 
 @NgModule({
@@ -40,9 +36,8 @@ import { PIPService } from './tools/services/pip/pip.service';
     PackageService,
     GenerickPackageParser,
     NPMService,
-    PIPService
-   
-  
+    PIPService,
+    LuaRockservice
   ],
   bootstrap: [AppComponent]
 })

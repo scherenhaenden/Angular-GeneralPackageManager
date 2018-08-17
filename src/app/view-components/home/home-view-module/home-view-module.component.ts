@@ -1,4 +1,3 @@
-import { Datum } from '../../../models/packages/services/nuget/datum';
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit } from '@angular/core';
 import { MockingLoadPackaged } from '../../../Mock/mocking.load.packaged';
 import { GenericPackage } from '../../../models/packages/generic.package';

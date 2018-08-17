@@ -12,7 +12,9 @@ import { GenerickPackageParser } from '../../parsers/generick.package.parser';
 import { NPMService } from '../npm/npm.service';
 import { NPMSearchResponseModel } from '../../../models/packages/services/npm/npm.search.response.model';
 import { PIPService } from '../pip/pip.service';
-
+import { LuaRockservice } from '../lua.rocks/lua.rocks.service';
+import { LuaRocksManifestRootResponse } from '../../../models/packages/services/lua.rocks/lua.rocks.manifest.root.response';
+import { MockingWirdLuarocksData } from '../../../Mock/moking.lua.rocks.weird.data';
 
 @Injectable(/*{
     // providedIn: 'root',
@@ -23,6 +25,7 @@ export class PackageService {
     constructor(private nugetService: NugetService
                 ,private nPMService: NPMService
                 ,private pIPService: PIPService
+                ,private luaRockservice: LuaRockservice
                ,private http: HttpClient
                 ,private route: ActivatedRoute
                 ,public generickPackageParser: GenerickPackageParser
@@ -31,8 +34,7 @@ export class PackageService {
 
     public searchAutoCompleteResponseModel = new SearchAutoCompleteResponseModel();
 
-    public async  getPackages(packageName:string, selectedPackageSystem:string):Promise<GenericPackage[]> {
-        
+    public async getPackages(packageName:string, selectedPackageSystem:string): Promise<GenericPackage[]> {        
         
         if(selectedPackageSystem === 'Nuget'){
                 let packagesToGetResolved =  this.nugetService.findPackageStartingWithPromise(packageName).
@@ -50,6 +52,7 @@ export class PackageService {
                     return this.parseObects(selectedPackageSystem, value);
                 }
             );
+
             return packagesToGetResolved;  
         }
         else if (selectedPackageSystem === 'PIP'){
@@ -69,12 +72,24 @@ export class PackageService {
                 
             );
             return  new Array<GenericPackage> ();;  
-        }
+        } else if (selectedPackageSystem === 'Lua'){
+          let packagesToGetResolved = this.luaRockservice.getPackagesStartingBy(packageName)/*.
+          then(
+              value=>{
+                  console.log('value');
+                  console.log(value);
+                  return value;
 
+              }
+          
+            )*/;  
+          console.log('typeof packagesToGetResolved');          
+          console.log(packagesToGetResolved);
+          return packagesToGetResolved;  
+      
+            //return this.luaRockservice.getPackagesStartingBy(packageName);
+        } 
 
-
-
-             
     }
 
     private parseObects(selectedPackageSystem:string, responseModel: any): GenericPackage[]{
@@ -86,8 +101,12 @@ export class PackageService {
             console.log(responseModel);
             return this.generickPackageParser.parseSeachPackagesNPMToGenericPackage(<NPMSearchResponseModel><any>responseModel); ;  
         }
+        else if(selectedPackageSystem === 'Lua'){
+//            console.log(responseModel);
 
 
+            return this.generickPackageParser.parseSeachPackagesLuaRocksToGenericPackage(<LuaRocksManifestRootResponse><any>responseModel); ;  
+        }
         //return this.generickPackageParser.parseSeachPackagesNugetToGenericPackage(searchAutoCompleteResponseModel);       
     }
 
