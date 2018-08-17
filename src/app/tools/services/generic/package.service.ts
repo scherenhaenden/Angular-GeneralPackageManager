@@ -31,7 +31,7 @@ export class PackageService {
 
     public searchAutoCompleteResponseModel = new SearchAutoCompleteResponseModel();
 
-    public async  getPackages(packageName:string, selectedPackageSystem:string):Promise<GenericPackage[]> {        
+    public async getPackages(packageName:string, selectedPackageSystem:string): Promise<GenericPackage[]> {        
         
         if(selectedPackageSystem === 'Nuget'){
                 let packagesToGetResolved =  this.nugetService.findPackageStartingWithPromise(packageName).
@@ -53,17 +53,21 @@ export class PackageService {
             return packagesToGetResolved;  
         }
         else if (selectedPackageSystem === 'Lua'){
-            let packagesToGetResolved =  this.luaRockservice.findPackageStartingWithPromise(packageName).
-            then(
-                value=>{  
-                    return this.parseObects(selectedPackageSystem, value);
-                }
-            ).catch(
-                value=>{  
-                    return  this.parseObects(selectedPackageSystem, new MockingWirdLuarocksData().getdata());
-                }                           
-            );
-            return packagesToGetResolved;  
+          let packagesToGetResolved = this.luaRockservice.getPackagesStartingBy(packageName)/*.
+          then(
+              value=>{
+                  console.log('value');
+                  console.log(value);
+                  return value;
+
+              }
+          
+            )*/;  
+          console.log('typeof packagesToGetResolved');          
+          console.log(packagesToGetResolved);
+          return packagesToGetResolved;  
+      
+            //return this.luaRockservice.getPackagesStartingBy(packageName);
         } 
     }
 
@@ -78,6 +82,8 @@ export class PackageService {
         }
         else if(selectedPackageSystem === 'Lua'){
 //            console.log(responseModel);
+
+
             return this.generickPackageParser.parseSeachPackagesLuaRocksToGenericPackage(<LuaRocksManifestRootResponse><any>responseModel); ;  
         }
         //return this.generickPackageParser.parseSeachPackagesNugetToGenericPackage(searchAutoCompleteResponseModel);       
