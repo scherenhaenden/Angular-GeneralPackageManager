@@ -10,15 +10,13 @@ export class LuaParser {
 
         try{
             obj1 = JSON.parse(<any>luaRocksManifestRootResponse);
-
         }
         catch(error){
             obj1 = <any>luaRocksManifestRootResponse;
 
-        }
-      
+        }      
         //console.log(obj);
-        let rootKeys = this.getAllKeysFromDynamicObject(obj1);
+        let rootKeys = this.getAllKeysFromDynamicObject(obj1);       
         let packagesKeys = this.getAllKeysFromDynamicObject((obj1['repository']));
 
         //console.log(packagesKeys);
