@@ -8,8 +8,7 @@ export class PIPRoutes {
     }
 
     private fillRoutes(){
-        this.AllPckagesHTML = 'https://pypi.org/simple/';
-        this.SearchAutocompleteService = 'http://registry.npmjs.org';
+        this.AllPckagesHTML = 'https://pypi.org/simple/';        
 
     }
 }

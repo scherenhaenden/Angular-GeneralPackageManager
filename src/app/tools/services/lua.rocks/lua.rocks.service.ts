@@ -9,6 +9,8 @@ import { LuaRocksManifestRootResponse } from '../../../models/packages/services/
 import { MockingWirdLuarocksData } from '../../../Mock/moking.lua.rocks.weird.data';
 import { List } from 'linqts';
 import { GenericPackage } from '../../../models/packages/generic.package';
+import { map, catchError, mergeMap } from 'rxjs/operators';
+import { Observable, of, throwError} from "rxjs"
 
 
 @Injectable(/*{
@@ -42,8 +44,24 @@ export class LuaRockservice {
         return this.response;
     }
 
+    public getDataFromBackend(): any {
+        return this.http.get(this.luaRocksRoutes.Manifest).
+        pipe(
+            map((data: any) => {
+                alert();
+                let products = data;
+                console.log(products);
+              return products;
+            }), catchError( error => {
+              return throwError( 'Something went wrong!' )
+            })       
+        )
+        
+      }
+
     public async getListOfAllPackages(nameOfPackage: string): Promise<GenericPackage[]>{        
-        let urlWithQuery = this.luaRocksRoutes.Manifest;        
+        let urlWithQuery = this.luaRocksRoutes.Manifest;    
+        await this.getDataFromBackend();    
         if(!this.response)  {
             this.response = this.getListOfAllPackagesPromise();
             this.allPackagesPromise = this.response.
@@ -90,16 +108,11 @@ export class LuaRockservice {
         return this.getListOfAllPackagesPromise();
     }
 
-    public async getPackagesStartingBy(nameOfPackage: string): Promise<GenericPackage[]>{
-
-           
+    public async getPackagesStartingBy(nameOfPackage: string): Promise<GenericPackage[]>{           
         let resultwaited = await this.getListOfAllPackages(nameOfPackage); 
-        console.log(resultwaited)     ;
-        console.log('resultwaited')     ;
-      
-
-        return resultwaited;
-      
+        console.log(resultwaited);
+        console.log('resultwaited');
+        return resultwaited;     
 
     }
 

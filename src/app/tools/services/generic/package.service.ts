@@ -58,7 +58,8 @@ export class PackageService {
                 );
                 break;
 
-            case 'PIP':                
+            case 'PIP':     
+                console.log('PIP selection')           ;
                 packagesToGetResolved =  this.pIPService.findPackageStartingWithPromise(packageName).
                 then(
                     value=>{
