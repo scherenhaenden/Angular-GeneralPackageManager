@@ -34,28 +34,57 @@ export class PackageService {
 
     public searchAutoCompleteResponseModel = new SearchAutoCompleteResponseModel();
 
-    public async getPackages(packageName:string, selectedPackageSystem:string): Promise<GenericPackage[]> {        
+    public async getPackages(packageName:string, selectedPackageSystem:string): Promise<GenericPackage[]> { 
         
-        if(selectedPackageSystem === 'Nuget'){
-                let packagesToGetResolved =  this.nugetService.findPackageStartingWithPromise(packageName).
-            then(
-                value=>{
-                    return this.parseObects(selectedPackageSystem, value);
-                }
-            );
-            return packagesToGetResolved;  
-        }
-        else if (selectedPackageSystem === 'NPM'){
-            let packagesToGetResolved =  this.nPMService.findPackageStartingWithPromise(packageName).
-            then(
-                value=>{
-                    return this.parseObects(selectedPackageSystem, value);
-                }
-            );
 
-            return packagesToGetResolved;  
+        let packagesToGetResolved:Promise<GenericPackage[]>;
+        switch(selectedPackageSystem)
+        {
+            case 'Nuget':                
+                 packagesToGetResolved =  this.nugetService.findPackageStartingWithPromise(packageName).
+                then(
+                    value=>{
+                        return this.parseObects(selectedPackageSystem, value);
+                    }
+                );
+                break;
+
+            case 'NPM':                
+                packagesToGetResolved =  this.nPMService.findPackageStartingWithPromise(packageName).
+                then(
+                    value=>{
+                        return this.parseObects(selectedPackageSystem, value);
+                    }
+                );
+                break;
+
+            case 'PIP':                
+                packagesToGetResolved =  this.pIPService.findPackageStartingWithPromise(packageName).
+                then(
+                    value=>{
+                        console.log(value);
+                        return null;
+                        
+                        //return this.parseObects(selectedPackageSystem, value);
+                    }
+                ).catch(
+                    (err) =>{ console.error(err);
+                        return null;
+                    }
+                    
+                );
+                //packagesToGetResolved=  new Array<GenericPackage> ();
+                break;
+
+            case 'Lua':                
+                packagesToGetResolved = this.luaRockservice.getPackagesStartingBy(packageName);            
+                break;
+          
         }
-        else if (selectedPackageSystem === 'PIP'){
+        return packagesToGetResolved;  
+/*
+        
+        if (selectedPackageSystem === 'PIP'){
             
             let packagesToGetResolved =  this.pIPService.findPackageStartingWithPromise(packageName).
             then(
@@ -78,7 +107,7 @@ export class PackageService {
           return packagesToGetResolved;  
       
             //return this.luaRockservice.getPackagesStartingBy(packageName);
-        } 
+        } */
 
     }
 
