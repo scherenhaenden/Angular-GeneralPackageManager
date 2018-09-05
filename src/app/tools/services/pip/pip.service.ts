@@ -35,6 +35,43 @@ export class PIPService {
         return this.http.get(this.pIPRoutes.AllPckagesHTML);
     }
 
+    public test (): Promise<any>{        
+        let testdata = `<!DOCTYPE html>
+        <html>
+          <head>
+            <title>Simple index</title>
+          </head>
+          <body>
+            <a href="/simple/0/">0</a>
+            <a href="/simple/0-0/">0-._.-._.-._.-._.-._.-._.-0</a>
+            <a href="/simple/0-0-1/">0.0.1</a>
+            <a href="/simple/00smalinux/">00SMALINUX</a>
+            <a href="/simple/01changer/">01changer</a>
+          <a href="/simple/zzz/">zzz</a>
+            <a href="/simple/zzzeeksphinx/">zzzeeksphinx</a>
+            <a href="/simple/zzzfs/">zzzfs</a>
+            <a href="/simple/zzz-web/">zzz-web</a>
+            <a href="/simple/zzzzzzzzz/">zzzZZZzzz</a>
+            </body>
+        </html>`
+
+        //let testPromise = new Promise();
+        let promise = new Promise(function(resolve, reject) {
+            // In place of the code given below, one can call REST APIs
+            // For errors, one can choose to reject the promise;
+            // For successful processing, promise can be resolved
+            //
+            const responseVar = 1+1;
+            if(responseVar == 2) {
+              resolve(testdata);
+            } else {
+              reject("Error: " + name);
+            }
+        });
+        return promise;
+    }
+
+
 
 
     public getListOfAllPackagesPromise(): Promise<any>{        
@@ -51,11 +88,12 @@ export class PIPService {
               console.log('getting everything');
               console.log(nameOfPackage);
         if(!this.responseFromPipserver)  {
-            this.responseFromPipserver = this.getListOfAllPackagesPromise();
+            //this.responseFromPipserver = this.getListOfAllPackagesPromise();
+            this.responseFromPipserver = this.test();
             this.allPackagesPromise = this.responseFromPipserver.
             then(
                 value=>{
-                    alert('');
+                    console.log('beginning');
                     console.log(value);
                     this.allPackages = this.pipParser.parseSeachPackagesLuaRocksToGenericPackage(value);
                     if(nameOfPackage){
