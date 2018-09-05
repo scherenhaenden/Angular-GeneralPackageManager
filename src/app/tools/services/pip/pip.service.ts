@@ -57,7 +57,7 @@ export class PIPService {
                 value=>{
                     alert('');
                     console.log(value);
-                    this.allPackages = this.pipParser.parseSeachPackagesLuaRocksToGenericPackage(value.Text());
+                    this.allPackages = this.pipParser.parseSeachPackagesLuaRocksToGenericPackage(value);
                     if(nameOfPackage){
                         this.allPackages = this.allPackages.filter(x=>x.Name.includes(nameOfPackage));
                     }                    
