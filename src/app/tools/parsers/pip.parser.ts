@@ -34,7 +34,11 @@ export class PipParser {
             genericPackage.Name = <string>entry
             genericPackages.push(genericPackage);
         }
-        return genericPackages;
+        //return genericPackages;
+
+
+
+        return new Array<GenericPackage>();
     }
 
     private getAllKeysFromDynamicObject(object:any):(string| number |symbol)[] {
