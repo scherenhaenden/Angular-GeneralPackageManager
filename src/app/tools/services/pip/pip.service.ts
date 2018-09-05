@@ -40,7 +40,7 @@ export class PIPService {
     public getListOfAllPackagesPromise(): Promise<any>{        
         let urlWithQuery = this.pIPRoutes.AllPckagesHTML;        
         if(!this.responseFromPipserver)  {
-            this.responseFromPipserver = <Promise<any>>this.http.get(urlWithQuery).toPromise();  
+            this.responseFromPipserver = <Promise<any>>this.http.get(urlWithQuery,{responseType: 'text'}).toPromise();  
             console.log(this.responseFromPipserver);
         }
         return this.responseFromPipserver;
@@ -56,6 +56,7 @@ export class PIPService {
             then(
                 value=>{
                     alert('');
+                    console.log(value);
                     this.allPackages = this.pipParser.parseSeachPackagesLuaRocksToGenericPackage(value.Text());
                     if(nameOfPackage){
                         this.allPackages = this.allPackages.filter(x=>x.Name.includes(nameOfPackage));
