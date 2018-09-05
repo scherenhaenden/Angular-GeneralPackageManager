@@ -48,7 +48,16 @@ export class PipParser {
 
     private getMatchesLinkRegex(htmlResponseFromPip:string ){
         //let re = new RegExp("/<a[^\b>]+>(.+)[\<]\/a>/");
-        let results = htmlResponseFromPip.match("/<a[^\b>]+>(.+)[\<]\/a>/");
+
+
+        var patt = new RegExp('"(.*)','g');
+        var res = patt.exec(htmlResponseFromPip);
+        var res2 = htmlResponseFromPip.match(patt);
+        console.log(res);
+        console.log(res2);
+
+        console.log('regex');
+        let results = htmlResponseFromPip.match('"\/\w+\/(.*)\"');
 
         console.log(results);
 
